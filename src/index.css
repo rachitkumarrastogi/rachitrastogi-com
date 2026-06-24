@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @media (prefers-reduced-motion: no-preference) {
+    html:focus-within {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink antialiased dark:bg-ink dark:text-cream;
+  }
+
+  ::selection {
+    @apply bg-gold/25 text-ink dark:bg-gold/30 dark:text-cream;
+  }
+}
+
+@layer components {
+  .section-label {
+    @apply text-xs font-medium uppercase tracking-[0.2em] text-gold-dim;
+  }
+
+  .section-title {
+    @apply font-serif text-3xl font-normal leading-tight text-ink dark:text-cream md:text-4xl lg:text-5xl;
+  }
+
+  .card {
+    @apply rounded-2xl border border-line bg-surface dark:border-white/10 dark:bg-slate-850/80;
+  }
+
+  .text-body {
+    @apply text-muted dark:text-cream/65;
+  }
+
+  .text-subtle {
+    @apply text-muted/80 dark:text-cream/45;
+  }
+
+  .border-section {
+    @apply border-line dark:border-white/10;
+  }
+
+  .btn-primary {
+    @apply rounded-full bg-gold px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-gold-light dark:text-ink;
+  }
+
+  .btn-secondary {
+    @apply rounded-full border border-line px-6 py-2.5 text-sm font-medium text-ink transition-colors hover:border-gold/50 hover:text-gold dark:border-white/20 dark:text-cream;
+  }
+
+  .link-gold {
+    @apply text-gold transition-colors hover:text-gold-light hover:underline underline-offset-4;
+  }
+
+  .panel-shadow {
+    box-shadow:
+      0 1px 0 rgba(0, 0, 0, 0.04),
+      0 8px 30px rgba(0, 0, 0, 0.06);
+  }
+
+  .dark .panel-shadow {
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.04),
+      0 12px 40px rgba(0, 0, 0, 0.35);
+  }
+
+  .cv-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 520px;
+  }
+
+  /* Leaflet journey map */
+  .journey-map-canvas {
+    z-index: 0;
+  }
+
+  .journey-map-canvas .leaflet-control-attribution {
+    font-size: 10px;
+    background: rgba(255, 255, 255, 0.85) !important;
+  }
+
+  .dark .journey-map-canvas .leaflet-control-attribution {
+    background: rgba(12, 15, 20, 0.85) !important;
+    color: rgba(244, 240, 230, 0.7);
+  }
+
+  .journey-pin {
+    position: relative;
+    width: 24px;
+    height: 32px;
+  }
+
+  .journey-pin__dot {
+    display: block;
+    width: 14px;
+    height: 14px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: #1a1a18;
+    border: 2px solid #a67c00;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+
+  .journey-pin__tail {
+    display: block;
+    width: 0;
+    height: 0;
+    margin: -2px auto 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 10px solid #1a1a18;
+  }
+
+  .journey-pin--active .journey-pin__dot {
+    background: #a67c00;
+    border-color: #c9a227;
+    transform: scale(1.2);
+  }
+
+  .journey-pin--active .journey-pin__tail {
+    border-top-color: #a67c00;
+  }
+}
+
+@layer utilities {
+  .animate-fade-up {
+    animation: fadeUp 0.7s ease-out both;
+  }
+
+  .animate-bounce-soft {
+    animation: bounceSoft 2s ease-in-out infinite;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes bounceSoft {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(6px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-up,
+    .animate-bounce-soft {
+      animation: none !important;
+    }
+  }
+}
