@@ -1,7 +1,7 @@
-import { headshotPath } from "../data/journey";
-import { profile, socialLinks } from "../data/profile";
-import { ScrollArrow } from "./ScrollArrow";
-import { SocialLinks } from "./SocialLinks";
+import { headshotPath } from "../../data/journey";
+import { profile, socialLinks } from "../../data/profile";
+import { ScrollArrow } from "../layout/ScrollArrow";
+import { SocialLinks } from "../layout/SocialLinks";
 
 export function Hero() {
   return (
@@ -72,15 +72,10 @@ export function Hero() {
                 }}
               />
               <div
-                className="hidden h-full w-full flex-col items-center justify-center bg-gradient-to-br from-stone-100 to-paper p-6 text-center dark:from-slate-850 dark:to-ink"
+                className="hidden h-full w-full items-center justify-center bg-gradient-to-br from-stone-100 to-paper dark:from-slate-850 dark:to-ink"
                 aria-hidden
               >
                 <span className="font-serif text-6xl text-gold/30">R</span>
-                <p className="mt-4 text-xs uppercase tracking-widest text-subtle">
-                  Add photo at
-                  <br />
-                  public/photos/headshot/headshot.jpg
-                </p>
               </div>
             </div>
             <p className="mt-4 text-center text-xs text-subtle">

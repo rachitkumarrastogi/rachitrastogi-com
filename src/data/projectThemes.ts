@@ -7,7 +7,7 @@ export interface ProjectTheme {
 }
 
 export const projectThemes: Record<string, ProjectTheme> = {
-  "agentprompt-catalog": {
+  "apregistry-prompt": {
     emoji: "🤖",
     gradient: "from-amber-50 via-orange-50/80 to-amber-50/40 dark:from-amber-950/80 dark:via-slate-850 dark:to-ink",
     accent: "border-gold/25 bg-gold/10",

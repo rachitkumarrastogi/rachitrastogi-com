@@ -1,5 +1,5 @@
-import { profile, socialLinks } from "../data/profile";
-import { SocialLinks } from "./SocialLinks";
+import { profile, socialLinks } from "../../data/profile";
+import { SocialLinks } from "../layout/SocialLinks";
 
 export function Contact() {
   return (

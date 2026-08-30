@@ -1,5 +1,5 @@
-import { profile } from "../data/profile";
-import { ScrollArrow } from "./ScrollArrow";
+import { profile } from "../../data/profile";
+import { ScrollArrow } from "../layout/ScrollArrow";
 
 const focusAreas = [
   "Distributed systems",

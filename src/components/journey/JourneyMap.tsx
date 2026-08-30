@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { journeyPins } from "../data/journey";
-import { ScrollArrow } from "./ScrollArrow";
+import { journeyPins } from "../../data/journey";
+import { ScrollArrow } from "../layout/ScrollArrow";
 import { JourneyMapCanvas } from "./JourneyMapCanvas";
 
 function PinGallery({
@@ -20,12 +20,8 @@ function PinGallery({
 
   const validImages = images.filter((_, i) => !failed.has(i));
 
-  if (validImages.length === 0) {
-    return (
-      <div className="flex h-48 w-full items-center justify-center bg-gradient-to-br from-stone-100 to-paper dark:from-slate-850 dark:to-ink">
-        <span className="text-xs text-subtle">Photo coming soon</span>
-      </div>
-    );
+  if (images.length === 0 || validImages.length === 0) {
+    return null;
   }
 
   const safeIndex = Math.min(index, validImages.length - 1);
@@ -33,16 +29,18 @@ function PinGallery({
   const originalIndex = images.indexOf(current);
 
   return (
-    <div className="relative">
-      <img
-        src={current}
-        alt={alt}
-        className="h-48 w-full object-cover"
-        onError={() =>
-          setFailed((prev) => new Set(prev).add(originalIndex))
-        }
-        loading="lazy"
-      />
+    <div className="relative border-b border-line dark:border-white/10">
+      <div className="flex aspect-[4/3] w-full items-center justify-center bg-stone-100 dark:bg-slate-900">
+        <img
+          src={current}
+          alt={alt}
+          className="max-h-full max-w-full object-contain"
+          onError={() =>
+            setFailed((prev) => new Set(prev).add(originalIndex))
+          }
+          loading="lazy"
+        />
+      </div>
       {validImages.length > 1 && (
         <>
           <button
@@ -50,7 +48,7 @@ function PinGallery({
             onClick={() =>
               setIndex((i) => (i - 1 + validImages.length) % validImages.length)
             }
-            className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-ink/60 px-2 py-1 text-sm text-white backdrop-blur-sm hover:bg-ink/80"
+            className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-ink/60 px-2.5 py-1 text-sm text-white backdrop-blur-sm hover:bg-ink/80"
             aria-label="Previous photo"
           >
             ‹
@@ -58,7 +56,7 @@ function PinGallery({
           <button
             type="button"
             onClick={() => setIndex((i) => (i + 1) % validImages.length)}
-            className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-ink/60 px-2 py-1 text-sm text-white backdrop-blur-sm hover:bg-ink/80"
+            className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-ink/60 px-2.5 py-1 text-sm text-white backdrop-blur-sm hover:bg-ink/80"
             aria-label="Next photo"
           >
             ›
@@ -70,7 +68,7 @@ function PinGallery({
                 type="button"
                 onClick={() => setIndex(i)}
                 className={`h-1.5 rounded-full transition-all ${
-                  i === safeIndex ? "w-4 bg-gold" : "w-1.5 bg-white/70"
+                  i === safeIndex ? "w-4 bg-gold" : "w-1.5 bg-white/80"
                 }`}
                 aria-label={`Photo ${i + 1}`}
               />
@@ -91,41 +89,30 @@ export function JourneyMap() {
   const active = journeyPins.find((p) => p.id === activeId) ?? journeyPins[0];
 
   return (
-    <section id="life" className="border-b border-section py-24">
-      <div className="mx-auto max-w-6xl px-6">
+    <section id="life" className="border-b border-section py-16 md:py-24">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <p className="section-label mb-3">Life in places</p>
         <h2 className="section-title mb-4">Journey across the map</h2>
         <p className="mb-10 max-w-2xl text-body">
-          Real map with pins for each chapter — hover or tap a pin to see photos
-          and story. Powered by OpenStreetMap (no API key needed). Add more
-          photos in{" "}
-          <code className="rounded bg-stone-100 px-1.5 py-0.5 text-sm text-gold-dim dark:bg-white/5">
-            public/photos/
-          </code>
-          .
+          From Uttar Pradesh to New Jersey — explore each chapter of the path.
         </p>
 
-        <div className="grid gap-8 lg:grid-cols-[1.45fr_1fr]">
+        <div className="grid gap-6 lg:grid-cols-[1.45fr_1fr] lg:gap-8">
           <div className="card overflow-hidden p-2 md:p-3">
             {mounted ? (
               <JourneyMapCanvas activeId={activeId} onSelect={setActiveId} />
             ) : (
-              <div className="flex min-h-[360px] items-center justify-center rounded-xl bg-stone-100 dark:bg-slate-850">
-                <span className="text-sm text-subtle">Loading map…</span>
-              </div>
+              <div className="min-h-[280px] rounded-xl bg-stone-100 dark:bg-slate-850 sm:min-h-[360px]" />
             )}
-            <p className="mt-3 px-2 text-center text-xs text-subtle">
-              UP → Pantnagar → IIIT → Bangalore → Cologne → NYC → New Jersey
-            </p>
           </div>
 
           <article className="card overflow-hidden transition-all">
             <PinGallery images={active.images} alt={active.title} />
-            <div className="p-6">
+            <div className="p-5 sm:p-6">
               <p className="text-[10px] font-medium uppercase tracking-widest text-gold">
                 {active.period}
               </p>
-              <h3 className="mt-1 font-serif text-2xl text-ink dark:text-cream">
+              <h3 className="mt-1 font-serif text-xl text-ink dark:text-cream sm:text-2xl">
                 {active.place}
                 <span className="text-base font-sans text-muted">
                   , {active.region}
@@ -141,22 +128,19 @@ export function JourneyMap() {
           </article>
         </div>
 
-        <div className="mt-8 flex flex-wrap gap-2">
+        <div className="mt-6 flex gap-2 overflow-x-auto pb-1 sm:mt-8 sm:flex-wrap">
           {journeyPins.map((pin) => (
             <button
               key={pin.id}
               type="button"
               onClick={() => setActiveId(pin.id)}
-              className={`rounded-full border px-3 py-1.5 text-xs transition-colors ${
+              className={`shrink-0 rounded-full border px-3 py-1.5 text-xs transition-colors ${
                 activeId === pin.id
                   ? "border-gold/50 bg-gold/10 text-gold"
                   : "border-line text-muted hover:border-gold/30 dark:border-white/10"
               }`}
             >
               {pin.place}
-              {pin.images.length > 0 && (
-                <span className="ml-1 text-gold">·</span>
-              )}
             </button>
           ))}
         </div>

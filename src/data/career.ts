@@ -1,5 +1,6 @@
 export type CareerRole = {
   company: string;
+  website: string;
   title: string;
   location: string;
   period: string;
@@ -10,6 +11,7 @@ export type CareerRole = {
 export const careerRoles: CareerRole[] = [
   {
     company: "Charles Schwab",
+    website: "https://www.schwab.com",
     title: "Senior Technical Lead Manager / Platform & AI Architect",
     location: "Jersey City, NJ",
     period: "Oct 2021 – Present",
@@ -23,6 +25,7 @@ export const careerRoles: CareerRole[] = [
   },
   {
     company: "TD Ameritrade",
+    website: "https://www.schwab.com",
     title: "Staff Software Engineer / Tech Lead",
     location: "Jersey City, NJ",
     period: "2018 – 2021",
@@ -35,6 +38,7 @@ export const careerRoles: CareerRole[] = [
   },
   {
     company: "Madison Square Garden",
+    website: "https://www.msg.com",
     title: "Senior Software Engineer — Core Data Services",
     location: "New York, NY",
     period: "2016 – 2018",
@@ -46,6 +50,7 @@ export const careerRoles: CareerRole[] = [
   },
   {
     company: "AXA",
+    website: "https://www.axa.com",
     title: "Technical Lead Manager — Enterprise Cloud Platforms",
     location: "Bangalore, India",
     period: "2010 – 2016",
@@ -58,6 +63,7 @@ export const careerRoles: CareerRole[] = [
   },
   {
     company: "SAP Labs",
+    website: "https://www.sap.com",
     title: "Senior Software Engineer — Release Automation",
     location: "Bangalore, India",
     period: "2005 – 2010",

@@ -1,4 +1,4 @@
-/** Build a URL-safe path under /photos/ (handles spaces & special chars in filenames) */
+/** Build a URL-safe path under /photos/ */
 export function photoUrl(...parts: string[]): string {
   return `/photos/${parts.map((p) => encodeURIComponent(p)).join("/")}`;
 }
@@ -62,8 +62,8 @@ export const journeyPins: JourneyPin[] = [
     lat: 12.9716,
     lng: 77.5946,
     images: [
-      photoUrl("career", "bangalore", "SAP Campus.JPG"),
-      photoUrl("career", "bangalore", "SAP 2.jpg"),
+      photoUrl("career", "bangalore", "sap-campus.jpg"),
+      photoUrl("career", "bangalore", "sap-2.jpg"),
     ],
   },
   {
@@ -77,24 +77,34 @@ export const journeyPins: JourneyPin[] = [
     lat: 50.9375,
     lng: 6.9603,
     images: [
-      photoUrl("career", "cologne", "AXA.jpg"),
-      photoUrl("career", "cologne", "AXA 2.JPG"),
+      photoUrl("career", "cologne", "axa.jpg"),
+      photoUrl("career", "cologne", "axa-2.jpg"),
     ],
   },
   {
     id: "nyc",
     place: "New York",
     region: "USA",
-    period: "2016 – 2021",
-    title: "MSG & TD Ameritrade",
-    caption:
-      "High-throughput data systems and 0→1 platform to 1M+ daily users.",
+    period: "2016 – 2018",
+    title: "Madison Square Garden",
+    caption: "High-throughput data services for live events and analytics.",
     lat: 40.7505,
     lng: -73.9934,
     images: [
-      photoUrl("career", "usa", "MSG", "MSG.jpg"),
-      photoUrl("career", "usa", "MSG", "MSG 2.jpg"),
+      photoUrl("career", "msg", "msg.jpg"),
+      photoUrl("career", "msg", "msg-2.jpg"),
     ],
+  },
+  {
+    id: "tda",
+    place: "Jersey City",
+    region: "New Jersey, USA",
+    period: "2018 – 2021",
+    title: "TD Ameritrade",
+    caption: "0→1 TDAx platform scaling to 1M+ daily active users.",
+    lat: 40.7282,
+    lng: -74.0776,
+    images: [],
   },
   {
     id: "present",
@@ -112,5 +122,6 @@ export const journeyPins: JourneyPin[] = [
 
 export const headshotPath = photoUrl("headshot", "headshot.jpg");
 
-/** Chronological order for the route line on the map */
-export const journeyRoute = journeyPins.map((p) => [p.lat, p.lng] as [number, number]);
+export const journeyRoute = journeyPins.map(
+  (p) => [p.lat, p.lng] as [number, number],
+);

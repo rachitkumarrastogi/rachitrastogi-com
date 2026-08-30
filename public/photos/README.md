@@ -1,35 +1,18 @@
-# Photos for rachitrastogi.com
+# Photos
 
-Upload images as **JPG, JPEG, PNG, or WebP**. Subfolders are fine — wire new paths in `src/data/journey.ts`.
+Drop images here using **lowercase kebab-case** filenames. See [docs/PHOTOS.md](../../docs/PHOTOS.md) for the full guide.
 
-## Folder guide
+## Quick reference
 
-| Folder | Suggested content | Map pin |
-|--------|-------------------|---------|
-| `headshot/` | `headshot.jpg` — hero portrait | — |
-| `origins/` | Early life, UP | Uttar Pradesh |
-| `education/` | Pantnagar, IIIT campus | Pantnagar · Prayagraj |
-| `career/bangalore/` | SAP Labs, AXA Bangalore | Bangalore |
-| `career/cologne/` | AXA Germany | Cologne |
-| `career/usa/MSG/` | Madison Square Garden era | New York |
-| `career/usa/` or `career/` | Schwab, Edison, Jersey City | New Jersey |
+| Folder | File(s) | Map pin |
+|--------|---------|---------|
+| `headshot/` | `headshot.jpg` | Hero portrait |
+| `origins/` | `roots-up.jpg` | Uttar Pradesh |
+| `education/` | `pantnagar.jpg`, `iiit-allahabad.jpg` | Pantnagar · IIIT |
+| `career/bangalore/` | `sap-campus.jpg`, `sap-2.jpg` | Bangalore ✓ |
+| `career/cologne/` | `axa.jpg`, `axa-2.jpg` | Cologne ✓ |
+| `career/msg/` | `msg.jpg`, `msg-2.jpg` | New York (MSG) ✓ |
+| `career/tda/` | `tda.jpg` | Jersey City (TDA) |
+| `career/schwab/` | `schwab.jpg` | NJ (Schwab) |
 
-## Currently wired on the site
-
-| Pin | Photos |
-|-----|--------|
-| Bangalore | `career/bangalore/SAP Campus.JPG`, `SAP 2.jpg` |
-| Cologne | `career/cologne/AXA.jpg`, `AXA 2.JPG` |
-| New York (MSG) | `career/usa/MSG/MSG.jpg`, `MSG 2.jpg` |
-
-To add more: drop files in the right folder and add paths in `src/data/journey.ts` under the pin’s `images` array.
-
-## Tips
-
-- Spaces in filenames are OK (e.g. `SAP Campus.JPG`).
-- Headshot: ~4:5 portrait works best.
-- Map uses **OpenStreetMap** — no Google API key required.
-
-## Optional: Google Maps
-
-If you prefer Google Maps styling later, you’ll need a [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/get-api-key) key (billing account). We can swap the tile layer when you have `VITE_GOOGLE_MAPS_API_KEY`.
+✓ = already uploaded

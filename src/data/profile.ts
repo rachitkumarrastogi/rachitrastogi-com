@@ -18,7 +18,7 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/rachitrastogi/",
   stackoverflow: "https://stackoverflow.com/users/13563514/rachit-kumar-rastogi",
   quora: "https://www.quora.com/profile/Rachit-Rastogi-60",
-  resumePath: "/Rachit_Rastogi_Resume.pdf",
+  resumePath: "/resume/Rachit_Rastogi_Resume.pdf",
   tagline: "Engineering leader · Backend architect · AI-native builder",
   summary: [
     "Twenty years building mission-critical distributed systems, launching 0→1 products, and scaling global engineering organizations.",

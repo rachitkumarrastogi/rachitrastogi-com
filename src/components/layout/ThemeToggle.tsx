@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getStoredTheme, toggleTheme, type Theme } from "../lib/theme";
+import { getStoredTheme, toggleTheme, type Theme } from "../../lib/theme";
 
 export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>("light");

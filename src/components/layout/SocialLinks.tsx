@@ -1,4 +1,4 @@
-import type { SocialLink } from "../data/profile";
+import type { SocialLink } from "../../data/profile";
 
 const iconClass = "h-5 w-5";
 

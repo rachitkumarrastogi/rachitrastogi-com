@@ -1,7 +1,7 @@
-import { projects, type Project } from "../data/projects";
-import { projectThemes } from "../data/projectThemes";
-import { profile } from "../data/profile";
-import { ScrollArrow } from "./ScrollArrow";
+import { projects, type Project } from "../../data/projects";
+import { projectThemes } from "../../data/projectThemes";
+import { profile } from "../../data/profile";
+import { ScrollArrow } from "../layout/ScrollArrow";
 
 const statusLabel: Record<string, string> = {
   live: "Live",
@@ -127,8 +127,8 @@ export function ProjectShowcase() {
         <p className="section-label">Projects & open source</p>
         <h2 className="section-title mt-3">What I build</h2>
         <p className="mx-auto mt-4 max-w-xl text-lg text-body">
-          AI platforms, agent infrastructure, and tools I ship outside the
-          day job — each linked to its repository.
+          AI platforms, agent infrastructure, and tools built outside the
+          day job.
         </p>
         <a
           href={profile.github}

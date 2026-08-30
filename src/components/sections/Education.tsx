@@ -1,4 +1,4 @@
-import { education, publications } from "../data/skills";
+import { education, publications } from "../../data/skills";
 
 export function Education() {
   return (

@@ -21,14 +21,14 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: "agentprompt-catalog",
-    title: "Agent Prompt Catalog",
+    id: "apregistry-prompt",
+    title: "APRegistry Prompt Catalog",
     tagline: "Production-ready agent system prompts",
     description:
       "Large-scale monorepo of role-based system prompts across industries — advertising, finance, healthcare, legal, IT, and more. Built for teams shipping agentic workflows in production.",
     stack: ["TypeScript", "MCP", "npm workspaces", "Agents"],
     category: "ai-platform",
-    github: "https://github.com/agentpromptregistry/agentprompt-catalog",
+    github: "https://github.com/agentpromptregistry/apregistry-prompt",
     highlights: [
       "4,900+ packaged agent role prompts",
       "Industry-organized taxonomy",

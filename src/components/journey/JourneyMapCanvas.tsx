@@ -7,7 +7,7 @@ import {
   useMap,
 } from "react-leaflet";
 import L from "leaflet";
-import { journeyPins, journeyRoute } from "../data/journey";
+import { journeyPins, journeyRoute } from "../../data/journey";
 
 function FitBounds({ positions }: { positions: [number, number][] }) {
   const map = useMap();
@@ -38,7 +38,7 @@ export function JourneyMapCanvas({ activeId, onSelect }: JourneyMapCanvasProps) 
       center={[30, 20]}
       zoom={2}
       scrollWheelZoom={false}
-      className="journey-map-canvas h-full min-h-[360px] w-full rounded-xl"
+      className="journey-map-canvas h-full min-h-[280px] w-full rounded-xl sm:min-h-[360px]"
       attributionControl
     >
       <TileLayer

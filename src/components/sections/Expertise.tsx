@@ -1,5 +1,5 @@
-import { leadershipPillars } from "../data/career";
-import { skillGroups } from "../data/skills";
+import { leadershipPillars } from "../../data/career";
+import { skillGroups } from "../../data/skills";
 
 export function Expertise() {
   return (
