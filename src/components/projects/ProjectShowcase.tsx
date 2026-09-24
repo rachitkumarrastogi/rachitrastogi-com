@@ -34,19 +34,36 @@ function ProjectPanel({
           reversed ? "md:flex-row-reverse" : ""
         }`}
       >
-        <div className="relative flex flex-1 items-center justify-center p-8 md:p-12">
+        <div className="relative flex flex-1 items-center justify-center overflow-hidden p-6 md:p-10">
           <span
             className="pointer-events-none absolute select-none font-serif text-[8rem] leading-none text-black/[0.04] dark:text-white/[0.03] md:text-[10rem]"
             aria-hidden
           >
             {theme.number}
           </span>
-          <div className="relative text-center">
-            <span className="text-6xl md:text-7xl" role="img" aria-hidden>
-              {theme.emoji}
-            </span>
+          <div className="relative w-full max-w-md text-center">
+            {project.image ? (
+              <div className="overflow-hidden rounded-2xl border border-line/60 bg-paper/40 shadow-sm dark:border-white/10 dark:bg-white/5">
+                <img
+                  src={project.image}
+                  alt=""
+                  className={
+                    project.imageFit === "top"
+                      ? "aspect-[4/3] w-full object-cover object-top"
+                      : project.imageFit === "contain"
+                        ? "aspect-square w-full object-contain bg-white dark:bg-ink/60"
+                        : "aspect-square w-full object-cover object-center"
+                  }
+                  loading="lazy"
+                />
+              </div>
+            ) : (
+              <span className="text-6xl md:text-7xl" role="img" aria-hidden>
+                {theme.emoji}
+              </span>
+            )}
             <p
-              className={`mt-3 inline-block rounded-full border px-4 py-1 text-xs font-bold uppercase tracking-wider ${theme.accent} ${theme.accentText}`}
+              className={`mt-4 inline-block rounded-full border px-4 py-1 text-xs font-bold uppercase tracking-wider ${theme.accent} ${theme.accentText}`}
             >
               {statusLabel[project.status]}
             </p>
@@ -65,6 +82,24 @@ function ProjectPanel({
           <p className="mt-4 text-base leading-relaxed text-body md:text-lg">
             {project.description}
           </p>
+
+          {project.stats && project.stats.length > 0 && (
+            <dl className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {project.stats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-xl border border-line/80 bg-paper/70 px-3 py-2.5 dark:border-white/10 dark:bg-white/5"
+                >
+                  <dt className="text-[10px] font-bold uppercase tracking-[0.14em] text-muted">
+                    {stat.label}
+                  </dt>
+                  <dd className="mt-0.5 font-serif text-lg text-ink dark:text-cream">
+                    {stat.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          )}
 
           <ul className="mt-5 space-y-1.5">
             {project.highlights.map((h) => (
@@ -105,6 +140,17 @@ function ProjectPanel({
                 {liveLabel(project.live)} ↗
               </a>
             )}
+            {project.links?.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-2 rounded-xl border-2 bg-transparent px-5 py-2.5 text-sm font-bold ${theme.accentText} border-current`}
+              >
+                {link.label} ↗
+              </a>
+            ))}
           </div>
         </div>
       </div>

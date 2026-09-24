@@ -6,6 +6,16 @@ export type ProjectCategory =
 
 export type ProjectStatus = "live" | "active" | "open-source";
 
+export interface ProjectLink {
+  label: string;
+  href: string;
+}
+
+export interface ProjectStat {
+  label: string;
+  value: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -15,11 +25,75 @@ export interface Project {
   category: ProjectCategory;
   github: string;
   live?: string;
+  /** Card visual under public/ — Gemini art or live product screenshot. */
+  image?: string;
+  /** How the image fills the card frame. Screenshots usually want "top". */
+  imageFit?: "cover" | "top" | "contain";
+  /** Extra outbound links (npm, registries, docs). */
+  links?: ProjectLink[];
+  /** Compact capability / distribution stats — prefer curated over live download APIs. */
+  stats?: ProjectStat[];
   highlights: string[];
   status: ProjectStatus;
 }
 
 export const projects: Project[] = [
+  {
+    id: "ace-bench",
+    title: "ACE-Bench",
+    tagline: "Agent Code Efficiency Benchmark",
+    description:
+      "Scores AI coding agents on structural efficiency against human baselines — not just pass/fail. Harvests pre-AI-era GitHub PRs (merged before 2021) across a ~1000-repo corpus, builds AST/file-scope priors, then compares agent patches to how senior engineers actually shipped the same fix.",
+    stack: ["Python", "AST metrics", "GitHub harvest", "Eval harness"],
+    category: "ai-platform",
+    github: "https://github.com/rachitkumarrastogi/ace-bench",
+    image: "/projectsThumbnails/aceBench.png",
+    stats: [
+      { label: "Corpus", value: "~1000 repos" },
+      { label: "Cutoff", value: "pre-2021 PRs" },
+      { label: "Django freeze", value: "6,125 PRs" },
+      { label: "Langs", value: "Py · JS · Go · Rust+" },
+    ],
+    highlights: [
+      "Human harvest → pattern prior → sandbox agent → ACE Index",
+      "Frozen Django baseline (6,125 pre-2021 merges) + Flask, Express, Cobra, Clap kickoff",
+      "Measures AST/file bloat vs human patch — efficiency, not just green tests",
+    ],
+    status: "open-source",
+  },
+  {
+    id: "unity-mcp",
+    title: "Unity MCP Server",
+    tagline: "Model Context Protocol for Unity",
+    description:
+      "MCP server for Unity — 130+ tools, Unity 6 skills, AI/ML discovery. Reads the project filesystem so agents work without opening the Editor. Listed on the official MCP Registry and published on npm.",
+    stack: ["TypeScript", "MCP", "Unity", "npm"],
+    category: "devtools",
+    github: "https://github.com/rachitkumarrastogi/unity-mcp-server",
+    image: "/projectsThumbnails/unity-mcp-server.png",
+    links: [
+      {
+        label: "npm",
+        href: "https://www.npmjs.com/package/unity-mcp-server",
+      },
+      {
+        label: "MCP Registry",
+        href: "https://registry.modelcontextprotocol.io/?q=unity-mcp-server",
+      },
+    ],
+    stats: [
+      { label: "Version", value: "v1.7.0" },
+      { label: "Tools", value: "130+" },
+      { label: "Registry", value: "Active" },
+      { label: "Transport", value: "stdio" },
+    ],
+    highlights: [
+      "Official MCP Registry listing (io.github.rachitkumarrastogi/unity-mcp-server)",
+      "npm package — npx unity-mcp-server",
+      "Editor-free: UNITY_PROJECT_PATH → project tools for any MCP client",
+    ],
+    status: "open-source",
+  },
   {
     id: "apregistry-prompt",
     title: "APRegistry Prompt Catalog",
@@ -29,6 +103,7 @@ export const projects: Project[] = [
     stack: ["TypeScript", "MCP", "npm workspaces", "Agents"],
     category: "ai-platform",
     github: "https://github.com/agentpromptregistry/apregistry-prompt",
+    image: "/projectsThumbnails/APRegistry-Catalog.png",
     highlights: [
       "4,900+ packaged agent role prompts",
       "Industry-organized taxonomy",
@@ -45,6 +120,7 @@ export const projects: Project[] = [
     stack: ["TypeScript", "Node.js", "Registry API"],
     category: "ai-platform",
     github: "https://github.com/agentpromptregistry/apregistry",
+    image: "/projectsThumbnails/APRegistry.png",
     highlights: [
       "Centralized prompt discovery",
       "Moderation & ops workflows",
@@ -61,6 +137,7 @@ export const projects: Project[] = [
     stack: ["Next.js 15", "FastAPI", "Supabase", "Playwright"],
     category: "ai-platform",
     github: "https://github.com/rachitkumarrastogi/VectorSentry",
+    image: "/projectsThumbnails/VectorSentry.png",
     highlights: [
       "512-d face embedding enrollment in-browser",
       "Automated crawl & match engine",
@@ -69,34 +146,37 @@ export const projects: Project[] = [
     status: "active",
   },
   {
-    id: "unity-mcp",
-    title: "Unity MCP Server",
-    tagline: "Model Context Protocol for Unity",
+    id: "nesrom",
+    title: "Pixel Vault 36",
+    tagline: "Original retro games for Mac",
     description:
-      "MCP server bridging AI agents with the Unity editor — enabling agent-driven game development, scene manipulation, and tooling automation.",
-    stack: ["TypeScript", "MCP", "Unity"],
-    category: "devtools",
-    github: "https://github.com/rachitkumarrastogi/unity-mcp-server",
+      "Native macOS SpriteKit vault of 36 original arcade-style games — platformers, shooters, and puzzles with original characters (Pip, Nyx, Star Moth). Fun side project, not a commercial ROM dump.",
+    stack: ["Swift", "SpriteKit", "macOS"],
+    category: "open-source",
+    github: "https://github.com/rachitkumarrastogi/NESROM",
+    image: "/projectsThumbnails/PixelVault.png",
     highlights: [
-      "Agent-to-Unity bridge",
-      "Open-source MCP integration",
-      "Pinned on GitHub profile",
+      "36 original catalog titles",
+      "Native .app (not a web pack)",
+      "Handcrafted signature games",
     ],
     status: "open-source",
   },
   {
     id: "careerflow360",
     title: "CareerFlow360",
-    tagline: "Agentic college & career guide",
+    tagline: "AI college & career guide",
     description:
-      "AI-powered college recommendation engine with RAG and multi-step LLM orchestration — matching, scholarships, and application tracking for students.",
+      "Live product for students and families — discover 6,000+ colleges, compare outcomes, match careers to majors, and build a shortlist with AI-enhanced search on real Scorecard data.",
     stack: ["LangGraph", "ChromaDB", "Next.js", "RAG"],
     category: "family",
     github: "https://github.com/GamerNCoder/pathfindr-web",
     live: "https://careerflow360.com",
+    image: "/projectsThumbnails/careerflow360.png",
+    imageFit: "top",
     highlights: [
-      "Multi-step LLM orchestration",
-      "RAG over college & career corpus",
+      "College Explorer — 6,000+ accredited schools",
+      "Career match, ROI tools, shortlist & compare",
       "Live at careerflow360.com",
     ],
     status: "live",
@@ -110,6 +190,7 @@ export const projects: Project[] = [
     stack: ["Java", "Algorithms", "Mathematics"],
     category: "open-source",
     github: "https://github.com/rachitkumarrastogi/projecteuler.net",
+    image: "/projectsThumbnails/ProjectEuler.png",
     highlights: [
       "Mathematical problem solving",
       "Algorithm design practice",
